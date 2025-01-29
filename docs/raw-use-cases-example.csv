@@ -1,0 +1,15 @@
+Category,Project,Input - First question,Input - Follow-up 1 (optional),Input - Follow-up 2 (optional),Evaluator - checklist
+Navigation,XS - ECS Racing,Create basic MVC architecture structure.,How can we adopt MVC architecture in the ECS-Network-Racing-Sample project?,,General answer illustrated.
+Navigation,XS - ECS Racing,Create basic data flow with retrieving data from the network and placing it to the JSON File.,Create basic data flow with retrieving data from the network and placing it to the JSON File in context of the project.,,A code example with explanations.
+Navigation,XS - ECS Racing,Create Service Locator implementation that can be used to store all current singletons from the project.,,,A code snippet with ServiceLocator implementation. + valid example on how to use it.
+Navigation,XS - ECS Racing,Find a sample of an existing Entity/Component/System (for ECS) in the project.,,,A list of scripts related to ECS.
+Navigation,XS - ECS Racing,give me an overall concept of the project,give me an description of main classes in the project architecture,,General info about the project
+Navigation,XS - ECS Racing,give me an example how can I create new entity in the project,,,An example how to create new entity following the architecture and the code style
+Navigation,XS - ECS Racing,Give me an example how can I add new feature into project,,,As in input
+Navigation,XS - ECS Racing,Provide general overview of the architecture state.,,,General overview that mentions client-server architecture.
+Navigation,XS - ECS Racing,Provide level of the code complexity.,,,Level of code complexity that is explained.
+Navigation,XS - ECS Racing,Provide level of the code consistency.,Provide an example of inconsistency in naming conventions from the project scripts.,,A level of the code consistency with explanations and examples.
+Navigation,XS - ECS Racing,Provide level of the code style.,Analyze scripts and provide level of the code style.,,A level of the code style with explanations and examples.
+Navigation,XS - ECS Racing,How to improve architecture?,Provide an example of architecture improvement for the ECS-Network-Racing-Sample project.,,Tips on how to improve architecture of the project. + an example.
+Refactoring,XS - ECS Racing,How to reduce code complexity?,Provide an example of complexity improvement for the ECS-Network-Racing-Sample project.,,Tips on how to improve code complexity in the project. + an example.
+Refactoring,XS - ECS Racing,How to increase code consistency?,Provide an example of code consistency improvement for the ECS-Network-Racing-Sample project.,,Tips on how to improve code consistency in the project. + an example.

@@ -1,0 +1,1239 @@
+Category,Project,Input - First question,Input - Follow-up 1 (optional),Input - Follow-up 2 (optional),Evaluator - checklist
+Navigation,XS - ECS Racing,Create basic MVC architecture structure.,How can we adopt MVC architecture in the ECS-Network-Racing-Sample project?,,General answer illustrated.
+Navigation,XS - ECS Racing,Create basic data flow with retrieving data from the network and placing it to the JSON File.,Create basic data flow with retrieving data from the network and placing it to the JSON File in context of the project.,,A code example with explanations.
+Navigation,XS - ECS Racing,Create Service Locator implementation that can be used to store all current singletons from the project.,,,A code snippet with ServiceLocator implementation. + valid example on how to use it.
+Navigation,XS - ECS Racing,Find a sample of an existing Entity/Component/System (for ECS) in the project.,,,A list of scripts related to ECS.
+Navigation,XS - ECS Racing,give me an overall concept of the project,give me an description of main classes in the project architecture,,General info about the project
+Navigation,XS - ECS Racing,give me an example how can I create new entity in the project,,,An example how to create new entity following the architecture and the code style
+Navigation,XS - ECS Racing,Give me an example how can I add new feature into project,,,As in input
+Navigation,XS - ECS Racing,Provide general overview of the architecture state.,,,General overview that mentions client-server architecture.
+Navigation,XS - ECS Racing,Provide level of the code complexity.,,,Level of code complexity that is explained.
+Navigation,XS - ECS Racing,Provide level of the code consistency.,Provide an example of inconsistency in naming conventions from the project scripts.,,A level of the code consistency with explanations and examples.
+Navigation,XS - ECS Racing,Provide level of the code style.,Analyze scripts and provide level of the code style.,,A level of the code style with explanations and examples.
+Navigation,XS - ECS Racing,How to improve architecture?,Provide an example of architecture improvement for the ECS-Network-Racing-Sample project.,,Tips on how to improve architecture of the project. + an example.
+Refactoring,XS - ECS Racing,How to reduce code complexity?,Provide an example of complexity improvement for the ECS-Network-Racing-Sample project.,,Tips on how to improve code complexity in the project. + an example.
+Refactoring,XS - ECS Racing,How to increase code consistency?,Provide an example of code consistency improvement for the ECS-Network-Racing-Sample project.,,Tips on how to improve code consistency in the project. + an example.
+Asset creation and setup,XS - ECS Racing,"Create a new Unity scene with next structure:
+- EntryPoint
+- UI
+-- LoadingScreenUI
+--- ProgressBar
+-- HomeScreenUI
+--- Settings Button
+-- SettingsScreenUI
+--- Back Button",Can you give me this Unity scene file for current project?,,A scene file is provided or a script that would generate it.
+Asset creation and setup,XS - ECS Racing,"Find a sample of UI Scene in the project and create a new one without content, but with full structure, name SettingsUI.",,,A scene file or a good manual guide on how to do it.
+Asset creation and setup,XS - ECS Racing,"Find a Main scene in the project and create a new one without content, but with full structure, named WorldMap.",,,Provides a scene file or unity package with it following the request.
+Asset creation and setup,XS - ECS Racing,Take UI object from MainMenu scene and create UI.prefab out of it with each child as nested prefab.,,,A unity package with prefabs.
+Asset creation and setup,XS - ECS Racing,"<Create a new animation override controller for a this character, based on this one animation controller, animation names are equals>???",,,
+Asset creation and setup,XS - ECS Racing,<Create animation mask for humanoid skeleton with only legs bones>???,,,
+Asset creation and setup,XS - ECS Racing,What shader will be suitable to make Wheels_01 material from the project more rubbery like actual car tires?,,,A shader that does the job.
+Asset creation and setup,XS - ECS Racing,Compress ecs-racing-logo.png texture in the project as much as possible without crucial quality drop.,,,A compressed texture or proper meta with set compression settings.
+Asset creation and setup,XS - ECS Racing,<Divide hands and legs animations for two separated layers with the same animation states>???,,,
+Navigation,XS - ECS Racing,Find all 3d models used in the project.,,,A list of 3d models used in the project.
+Navigation,XS - ECS Racing,Find all prefabs that contain AirPlaneTail prefab as nested.,,,A list of prefabs using AirPlaneTail as nested prefab.
+Navigation,XS - ECS Racing,What type of resource management was built in the project?,How the resources flow is organized?,,Describing on how prefabs fetching or other asset retrieval works.
+Navigation,XS - ECS Racing,What types of image compression is used in the project?,Can you inspect meta files for such images and list types of image compression used in the project?,,Gives concrete types of image compression that are used in the project.
+Navigation,XS - ECS Racing,Provide general overview of the project structure state,Provide project files and folders structure overview.,,Files and folders structure overview.
+Navigation,XS - ECS Racing,Provide general overview of the resources optimization.,Provide general overview of the assets optimization.,,"A set of suggestions on how to optimize current resources in the project (textures, models, audio clips etc)"
+Refactoring,XS - ECS Racing,How to improve project structure?,Provide an example of project structure improvement for the ECS-Network-Racing-Sample project.,,Recommendations on how to improve given project.
+Refactoring,XS - ECS Racing,How to reduce codebase navigation complexity?,Provide an example based on the ECS-Network-Racing-Sample project.,,Recommendations on how to improve code complexity for the given project.
+Refactoring,XS - ECS Racing,How to reduce assets weight?,Give me the list of most heavy files with assets from the ECS-Network-Racing-Sample project where I can apply these optimization techniques.,,A list of suggestions and file references in code.
+Coding tasks (snippets),XS - ECS Racing,Create system that is responsible for bot AI mechanics and processes CheckPointAspect data.,Provide code for this and instruction on how to integrate it in the ECS-Network-Racing-Sample project.,,A system class with AI logic to move to next checkpoint.
+Coding tasks (snippets),XS - ECS Racing,"Create UI Screen script that responsible for leaderboard screen, receives LeaderboardData and displaying rank and name data on the UI.
+
+    public struct LeaderboardData : IBufferElementData
+    {
+        [GhostField] public int Rank;
+        [GhostField] public FixedString128Bytes Name;
+        [GhostField] public float Time;
+        [GhostField] public int Ping;
+    }",How can I integrate this script into ECS-Network-Racing-Sample project and pass existing LeaderboardData from ECS?,,A working script that is easy to integrate into the project.
+Coding tasks (snippets),XS - ECS Racing,Create injection constructor that injects PlayerAudioManager to the UpdateAudioSourceSystem.,,,A valid code example.
+Coding tasks (snippets),XS - ECS Racing,Create interface that responsible for boosts mechanics.,Provide instruction on how to integrate it in the ECS-Network-Racing-Sample project.,,An interface that handles boost mechanics.
+Test automation,XS - ECS Racing,"Create UnitTest for UpdateAudioSourceSystem.
+
+    /// <summary>
+    /// Update the Player Audio Sources position and volume
+    /// </summary>
+    [UpdateAfter(typeof(UpdateCameraTargetSystem))]
+    [WorldSystemFilter(WorldSystemFilterFlags.ClientSimulation | WorldSystemFilterFlags.ThinClientSimulation)]
+    public partial struct UpdateAudioSourceSystem : ISystem
+    {
+        public void OnDestroy(ref SystemState state)
+        {
+            foreach (var car in Query<PlayerAspect>().WithAll<AudioSourceTag>())
+            {
+                PlayerAudioManager.Instance.DeleteAudioSource(car.Self);
+            }
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            if (PlayerAudioManager.Instance == null)
+            {
+                return;
+            }
+
+            var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
+            foreach (var car in Query<PlayerAspect>().WithNone<AudioSourceTag>())
+            {
+                var isLocalUser = state.EntityManager.HasComponent<LocalUser>(car.Self);
+                PlayerAudioManager.Instance.AddAudioSource(car.Self, isLocalUser);
+                ecb.AddComponent<AudioSourceTag>(car.Self);
+            }
+
+            foreach (var audio in Query<AudioAspect>())
+            {
+                PlayerAudioManager.Instance.UpdatePitchAndVolume(audio.Self, audio.GetVolumeRange());
+                PlayerAudioManager.Instance.UpdatePosition(audio.Self, audio.LocalToWorld.Position,
+                    state.EntityManager);
+            }
+
+            ecb.Playback(state.EntityManager);
+            ecb.Dispose();
+        }
+    }",,,A working unit-test.
+Navigation,XS - ECS Racing,Find object that is responsible for spawning players.,,,A script responsible for spawning player object.
+Navigation,XS - ECS Racing,Find UI entity related to the UI popup with start race button.,,,A script where the button is located.
+Navigation,XS - ECS Racing,Find entrypoint for the race functionality.,,,A script where entrypoint is located.
+Navigation,XS - ECS Racing,Find all managers related to the audio functionality.,,,A script where managers are located.
+Navigation,XS - ECS Racing,What responsibility of VehicleSmoothingSystem?,,,Description of what the system is responsible for.
+Navigation,XS - ECS Racing,What object is responsible for car skin choosing before race functionality?,,,List of classes that are involved in the functionality.
+Navigation,XS - ECS Racing,How is a server connection working in project,Example How can I retrieve data between client and server,,Explanation and examples how the server and the client connects and share data
+Coding tasks (snippets),XS - ECS Racing,"Is there any logical-related issues in PlayerSpawnSystem object? This object functionality meant to get the connection and spawn the players.
+
+    /// <summary>
+    /// Gets the connection and spawn the player
+    /// </summary>
+    [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
+    [UpdateInGroup(typeof(GhostSimulationSystemGroup))]
+    public partial struct PlayerSpawnSystem : ISystem
+    {
+        [BurstCompile]
+        public void OnCreate(ref SystemState state)
+        {
+            // Must wait for the spawner entity scene to be streamed in, most likely instantaneous in
+            // this sample but good to be sure
+            state.RequireForUpdate<AutoConnect>();
+            state.RequireForUpdate<PlayerSpawner>();
+        }
+
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
+        {
+            var commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
+            var spawnPointBuffer = GetSingletonBuffer<SpawnPoint>(true);
+            var skinBuffer = GetSingletonBuffer<SkinElement>(true);
+            foreach (var request in Query<SpawnPlayerRequestAspect>())
+            {
+                commandBuffer.DestroyEntity(request.Self);
+
+                var entityNetwork = request.SourceConnection;
+                var networkId = state.EntityManager.GetComponentData<NetworkId>(entityNetwork);
+                Debug.Log($""Spawning player for connection {networkId.Value}"");
+
+                // Instantiate the Car Base for this skin
+                var player = commandBuffer.Instantiate(skinBuffer[request.Id].BaseType);
+
+                // The network ID owner must be set on the ghost owner component on the players
+                // this is used internally for example to set up the CommandTarget properly
+                commandBuffer.SetComponent(player, new GhostOwner {NetworkId = networkId.Value});
+                var name = request.Name;
+                name = name == """" ? $""Player{networkId.Value}"" : name;
+                commandBuffer.SetComponent(player, new PlayerName {Name = name});
+                commandBuffer.SetComponent(player, new Player {State = PlayerState.Lobby});
+
+                // Mark that this connection has had a player spawned for it so we won't process it again
+                commandBuffer.AddComponent<PlayerSpawned>(entityNetwork);
+
+                // Give each NetworkId their own spawn pos:
+                var index = (networkId.Value - 1) % spawnPointBuffer.Length;
+                var position = spawnPointBuffer[index].LobbyPosition;
+                var rotation = spawnPointBuffer[index].LobbyRotation;
+                commandBuffer.SetComponent(player, new LocalTransform
+                {
+                    Position = position,
+                    Rotation = rotation,
+                    Scale = 1
+                });
+                commandBuffer.SetComponent(player, new LapProgress
+                {
+                    LastCheckPointPosition = position,
+                    LapCount = 10
+                });
+                commandBuffer.SetComponent(player, new Reset
+                {
+                    TargetPosition = position,
+                    TargetRotation = rotation
+                });
+                commandBuffer.SetComponent(player, new Skin
+                {
+                    Id = request.Id
+                });
+
+                // Add the player to the linked entity group on the connection so it is destroyed
+                // automatically on disconnect (destroyed with connection entity destruction)
+                commandBuffer.AppendToBuffer(entityNetwork, new LinkedEntityGroup {Value = player});
+
+                // Create an entity to allow server to reset when all players disconnect
+                if (!HasSingleton<ResetServerOnDisconnect>())
+                {
+                    var e = state.EntityManager.CreateEntity();
+                    commandBuffer.AddComponent<ResetServerOnDisconnect>(e);
+                }
+            }
+
+            commandBuffer.Playback(state.EntityManager);
+        }
+    }",,,Spots 2 issues in the logic.
+Refactoring,XS - ECS Racing,"Provide overview of the object code state:
+
+    public partial struct SteeringJob : IJobEntity
+    {
+        public float DeltaTime;
+
+        private void Execute(in Steering steering, in WheelDriveControls wheelDriveControls,
+            ref LocalTransform localTransform, ref Wheel wheel)
+        {
+            float steeringAngle;
+            var steeringAmount = wheelDriveControls.SteerAmount;
+            if (steeringAmount > 0)
+            {
+                var dir = wheel.Placement == WheelPlacement.FrontLeft ? 1 : -1;
+                steeringAngle = steering.CalculateSteeringAngle(steeringAmount, dir);
+            }
+            else if (steeringAmount < 0)
+            {
+                var dir = wheel.Placement == WheelPlacement.FrontRight ? 1 : -1;
+                steeringAngle = steering.CalculateSteeringAngle(steeringAmount, dir);
+            }
+            else
+            {
+                steeringAngle = 0.0f;
+            }
+
+            wheel.SteeringAngle = steeringAngle;
+
+            var targetRotation = quaternion.AxisAngle(math.up(), steeringAngle);
+            localTransform.Rotation = math.slerp(localTransform.Rotation, targetRotation,
+                steering.SteeringTime * DeltaTime);
+        }
+    }",Can you add more details to this in context of current project?,,Description of what code does in context of current project.
+Refactoring,XS - ECS Racing,"How to increase object consistency?
+
+    public struct LapProgress : IComponentData
+    {
+        [GhostField] public int CurrentCheckPoint;
+        [GhostField] public int LapCount;
+        [GhostField] public int CurrentLap;
+        [GhostField] public float3 LastCheckPointPosition;
+        [GhostField] public bool AddedToLeaderboard;
+        [GhostField] public float CelebrationIdleDelay;
+        [GhostField] public double ArrivalTime;
+
+        public int NextPointId => CurrentCheckPoint + 1;
+
+        public bool HasArrived => ArrivalTime > 0;
+
+        public void Reset(int lapCount = 1)
+        {
+            CurrentCheckPoint = 0;
+            CurrentLap = 1;
+            AddedToLeaderboard = false;
+            LapCount = lapCount;
+            CelebrationIdleDelay = 0;
+            ArrivalTime = 0;
+        }
+    }",,,Suggestions on how to improve consistency of the given code in context of the project.
+Refactoring,XS - ECS Racing,"How to optimize data retrieving in this object?
+
+    [WorldSystemFilter(WorldSystemFilterFlags.ClientSimulation | WorldSystemFilterFlags.ThinClientSimulation)]
+    public partial struct TestStartRaceSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<NetworkId>();
+            state.RequireForUpdate<Race>();
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            var race = GetSingleton<Race>();
+            if (race.State is RaceState.StartingRaceAutomatically)
+            {
+                if (TryGetSingleton<NetworkId>(out var carNetworkId))
+                {
+                    foreach (var car in Query<PlayerAspect>())
+                    {
+                        if (car.NetworkId == carNetworkId.Value)
+                        {
+                            state.Enabled = false;
+                            state.EntityManager.CreateEntity(typeof(PlayersReadyRPC),
+                                typeof(SendRpcCommandRequest));
+                        }
+                    }
+                }
+            }
+        }
+    }",,,Optimized code.
+Refactoring,XS - ECS Racing,"How to optimize this object?
+
+/// <summary>
+/// Update the Player Audio Sources position and volume
+/// </summary>
+[UpdateAfter(typeof(UpdateCameraTargetSystem))]
+[WorldSystemFilter(WorldSystemFilterFlags.ClientSimulation | WorldSystemFilterFlags.ThinClientSimulation)]
+public partial struct UpdateAudioSourceSystem : ISystem
+{
+    public void OnDestroy(ref SystemState state)
+    {
+        foreach (var car in Query<PlayerAspect>().WithAll<AudioSourceTag>())
+        {
+            PlayerAudioManager.Instance.DeleteAudioSource(car.Self);
+        }
+    }
+
+    public void OnUpdate(ref SystemState state)
+    {
+        if (PlayerAudioManager.Instance == null)
+        {
+            return;
+        }
+
+        var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
+        foreach (var car in Query<PlayerAspect>().WithNone<AudioSourceTag>())
+        {
+            var isLocalUser = state.EntityManager.HasComponent<LocalUser>(car.Self);
+            PlayerAudioManager.Instance.AddAudioSource(car.Self, isLocalUser);
+            ecb.AddComponent<AudioSourceTag>(car.Self);
+        }
+
+        foreach (var audio in Query<AudioAspect>())
+        {
+            PlayerAudioManager.Instance.UpdatePitchAndVolume(audio.Self, audio.GetVolumeRange());
+            PlayerAudioManager.Instance.UpdatePosition(audio.Self, audio.LocalToWorld.Position,
+                state.EntityManager);
+        }
+
+        ecb.Playback(state.EntityManager);
+        ecb.Dispose();
+    }
+}",,,Suggestions on how to optimize the object.
+Refactoring,XS - ECS Racing,"How to refactor this object?
+
+using Unity.Entities.Racing.Common;
+using Unity.NetCode;
+using static Unity.Entities.SystemAPI;
+
+namespace Unity.Entities.Racing.Gameplay
+{
+    /// <summary>
+    /// Adds events to lobby buttons.
+    /// </summary>
+    [WorldSystemFilter(WorldSystemFilterFlags.ClientSimulation)]
+    public partial struct InitializeHUDSystem : ISystem
+    {
+        private bool m_HUDInitialized;
+
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<NetworkId>();
+        }
+
+        public void OnUpdate(ref SystemState state)
+        {
+            if (m_HUDInitialized)
+                return;
+
+            if (HUDController.Instance == null)
+                return;
+
+            var entityManager = state.EntityManager;
+            var networkId = GetSingleton<NetworkId>().Value;
+
+            HUDController.CancelStartButton.clicked += () =>
+            {
+                PlayerAudioManager.Instance.PlayClick();
+                entityManager.CreateEntity(typeof(CancelPlayerReadyRPC), typeof(SendRpcCommandRequest));
+            };
+
+            HUDController.ResetCarButton.clicked += () =>
+            {
+                var requestEntity = entityManager.CreateEntity(typeof(SendRpcCommandRequest));
+                entityManager.AddComponentData(requestEntity, new ResetCarRPC {Id = networkId});
+                PlayerAudioManager.Instance.PlayClick();
+            };
+
+            HUDController.StartRaceButton.clicked += () =>
+            {
+                entityManager.CreateEntity(typeof(PlayersReadyRPC), typeof(SendRpcCommandRequest));
+                PlayerAudioManager.Instance.PlayClick();
+            };
+
+            m_HUDInitialized = true;
+        }
+    }
+}",,,A refactored code.
+Coding tasks (snippets),XS - ECS Racing,"Create a method that receives a list of PlayerAspect on input, process data by sorting elements where highest LapProgress (highest LapCount and highest CurrentCheckPoint) goes first and gives sorted list of PlayerAspect on the output.",,,A method that performs optimally and uses project codebase.
+Coding tasks (snippets),XS - ECS Racing,Create formula for an engine and rpm calculation and add to the project,,,As mentioned in the input
+Coding tasks (snippets),XS - ECS Racing,Create quaternion transformation to transform camera to be facing opposite direction.,,,A working solution in Unity.
+Coding tasks (snippets),XS - ECS Racing,"Create an interface for PlayerAudioManager functionality.
+
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
+
+namespace Unity.Entities.Racing.Gameplay
+{
+    /// <summary>
+    /// Creates audio source and handles volume and position
+    /// </summary>
+    public class PlayerAudioManager : MonoBehaviour
+    {
+        public static PlayerAudioManager Instance;
+        public float InitialAudioSourceVolume;
+        public AnimationCurve VolumeCurve;
+        public AnimationCurve PitchCurve;
+        public GameObject ReverbZonesPrefab;
+        public GameObject AudioSourcePrefab;
+        public AudioClip StartEngine;
+        public AudioClip LoopEngine;
+        public AudioClip TopSpeed;
+
+        public AudioClip Lobby;
+        public AudioClip Click;
+        public AudioClip Race;
+        public AudioClip Celebration;
+
+        public AudioMixerGroup MusicChannel;
+        public AudioMixerGroup UIChannel;
+        public AudioMixer AudioMixer;
+        private readonly Dictionary<Entity, AudioReference> m_Collection = new();
+        private Scene m_AdditiveScene;
+        private AudioSource MusicAudioSource;
+        private AudioSource UIAudioSource;
+
+        private float m_PreviousVolume = 1f;
+        private GameObject m_ReverbZones;
+
+        public bool IsMute
+        {
+            get
+            {
+                AudioMixer.GetFloat(""Volume"", out var value);
+                return value < -180f;
+            }
+        }
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+#if UNITY_EDITOR
+                if (!EditorApplication.isPlayingOrWillChangePlaymode)
+                {
+                    m_AdditiveScene = SceneManager.GetSceneByName(""AdditiveAudioSourceScene"");
+                }
+                else
+#endif
+                {
+                    m_AdditiveScene = SceneManager.CreateScene(""AdditiveAudioSourceScenePlayMode"");
+                }
+
+                m_ReverbZones = Instantiate(ReverbZonesPrefab);
+                SceneManager.MoveGameObjectToScene(m_ReverbZones, m_AdditiveScene);
+            }
+        }
+
+        public void ToggleVolume()
+        {
+            if (IsMute)
+            {
+                m_PreviousVolume = 1f;
+                m_ReverbZones.SetActive(true);
+            }
+            else
+            {
+                m_PreviousVolume = 0.0001f;
+                m_ReverbZones.SetActive(false);
+            }
+
+            AudioMixer.SetFloat(""Volume"", math.log(m_PreviousVolume) * 20f);
+        }
+
+        public void AddAudioSource(Entity player, bool is2D)
+        {
+            if (m_Collection.ContainsKey(player))
+            {
+                DeleteAudioSource(player);
+            }
+
+            var instance = Instantiate(AudioSourcePrefab);
+            var audioSource = InstantiateAudioSource(instance, StartEngine, is2D);
+            instance.name = $""{(is2D ? ""2D"" : ""3D"")} AudioSource - Entity : [{player.Index}]"";
+
+            var data = new AudioReference
+            {
+                GameObject = instance,
+                AudioSource = audioSource,
+                StartEngine = audioSource.clip
+            };
+
+            m_Collection.Add(player, data);
+            SceneManager.MoveGameObjectToScene(instance, m_AdditiveScene);
+            StartCoroutine(InitEngine(audioSource));
+        }
+
+        public void UpdatePosition(Entity player, float3 position, EntityManager manager)
+        {
+            if (!math.isfinite(position).x)
+            {
+                return;
+            }
+
+            if (m_Collection.ContainsKey(player))
+            {
+                m_Collection[player].GameObject.transform.position = position;
+            }
+
+
+            var list = new List<Entity>();
+            foreach (var entity in m_Collection.Keys)
+            {
+                if (!manager.Exists(entity))
+                {
+                    list.Add(entity);
+                }
+            }
+
+            foreach (var entity in list)
+            {
+                DeleteAudioSource(entity);
+            }
+        }
+
+        public void DeleteAudioSource(Entity player)
+        {
+            if (m_Collection.ContainsKey(player))
+            {
+                Destroy(m_Collection[player].GameObject);
+                m_Collection.Remove(player);
+            }
+        }
+
+        public void UpdatePitchAndVolume(Entity player, float velocity)
+        {
+            if (m_Collection.ContainsKey(player) &&
+                m_Collection[player].AudioSource.clip != m_Collection[player].StartEngine)
+            {
+                if (velocity >= 1f && m_Collection[player].AudioSource.clip != TopSpeed)
+                {
+                    ChangeAudio(m_Collection[player].AudioSource, TopSpeed);
+                }
+
+                else if (velocity < 1f && m_Collection[player].AudioSource.clip != LoopEngine)
+                {
+                    ChangeAudio(m_Collection[player].AudioSource, LoopEngine);
+                }
+
+                m_Collection[player].AudioSource.pitch = PitchCurve.Evaluate(velocity);
+                m_Collection[player].AudioSource.volume = VolumeCurve.Evaluate(velocity);
+            }
+        }
+
+        public void CreateAndPlayMusicAudioSourceOnce()
+        {
+            if (MusicAudioSource != null)
+                return;
+
+            var instance = Instantiate(AudioSourcePrefab);
+            instance.name = ""Music - AudioSource"";
+            MusicAudioSource = InstantiateAudioSource(instance, Lobby,true);
+            MusicAudioSource.outputAudioMixerGroup = MusicChannel;
+            MusicAudioSource.bypassEffects = true;
+            MusicAudioSource.bypassListenerEffects = true;
+            MusicAudioSource.bypassReverbZones = true;
+            MusicAudioSource.Play();
+            SceneManager.MoveGameObjectToScene(instance, m_AdditiveScene);
+        }
+
+        public void CreateUIAudioSource()
+        {
+            if (UIAudioSource != null)
+                return;
+
+            var instance = Instantiate(AudioSourcePrefab);
+            instance.name = ""UI - AudioSource"";
+            UIAudioSource = InstantiateAudioSource(instance, Click, true);
+            UIAudioSource.outputAudioMixerGroup = UIChannel;
+            UIAudioSource.bypassReverbZones = true;
+            UIAudioSource.bypassListenerEffects = true;
+            UIAudioSource.bypassEffects = true;
+            UIAudioSource.loop = false;
+            SceneManager.MoveGameObjectToScene(instance, m_AdditiveScene);
+        }
+
+        public void PlayRaceMusic()
+        {
+            ChangeAudio(MusicAudioSource, Race);
+        }
+
+        public void PlayCelebrationMusic()
+        {
+            ChangeAudio(MusicAudioSource, Celebration);
+        }
+
+        public void PlayLobbyMusic()
+        {
+            ChangeAudio(MusicAudioSource, Lobby);
+        }
+
+        public void PlayClick()
+        {
+            if (UIAudioSource == null)
+            {
+                CreateUIAudioSource();
+            }
+            UIAudioSource.clip = Click;
+            UIAudioSource.Play();
+        }
+
+        private IEnumerator InitEngine(AudioSource audioSource)
+        {
+            ChangeAudio(audioSource, StartEngine);
+            audioSource.Play();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(audioSource.clip.length);
+            ChangeAudio(audioSource, LoopEngine);
+        }
+
+        private AudioSource InstantiateAudioSource(GameObject instance, AudioClip clip, bool is2D)
+        {
+            var audioSource = instance.GetComponent<AudioSource>();
+            audioSource.spatialBlend = is2D ? 0f : 1f;
+            audioSource.clip = clip;
+            audioSource.volume = InitialAudioSourceVolume;
+            audioSource.velocityUpdateMode = AudioVelocityUpdateMode.Fixed;
+            return audioSource;
+        }
+
+        private void ChangeAudio(AudioSource audioSource, AudioClip clip)
+        {
+            if (audioSource.clip != clip)
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+        }
+
+        private struct AudioReference
+        {
+            public GameObject GameObject;
+            public AudioSource AudioSource;
+            public AudioClip StartEngine;
+        }
+    }
+}",,,An interface that provided code would implement.
+Test automation,XS - ECS Racing,"Create UnitTest for this method.
+
+public static bool ValidateIPv4(string ipString)
+{
+    if (string.IsNullOrWhiteSpace(ipString))
+    {
+        return false;
+    }
+
+    var splitValues = ipString.Split('.');
+    if (splitValues.Length != 4)
+    {
+        return false;
+    }
+
+    return splitValues.All(r => byte.TryParse(r, out var tempForParsing)) && ValidateIP(ipString);
+}
+
+private static bool ValidateIP(string addrString)
+{
+    return IPAddress.TryParse(addrString, out var address);
+}",,,A good unit test for method.
+Navigation,XS - ECS Racing,Which feature is responsible for car movement functionality?,,,Provides concrete script reference where the functionality is located.
+Navigation,XS - ECS Racing,What method is responsible for player rank calculation?,,,Provides concrete script reference where the functionality is located.
+Navigation,XS - ECS Racing,What responsibility of method Lerp in Wheel component data?,Analyze Wheel.cs script from the project and answer previous question again.,,Provides good description of what the method does.
+Navigation,XS - ECS Racing,Provide an overview of the vehicle simulation feature.,Provide an overview of the vehicle simulation feature in the ECS-Network-Racing-Sample project.,,Provides good description of what the feature does. With references to the project.
+Refactoring,XS - ECS Racing,"How could I improve performance of this method?
+
+public void OnUpdate(ref SystemState state)
+{
+    var race = SystemAPI.GetSingleton<Race>();
+    if (!race.IsFinishing)
+        return;
+
+    foreach (var localPlayer in Query<LocalPlayerAspect>())
+    {
+        if (localPlayer.Player.InRace || localPlayer.Player.IsCelebrating || localPlayer.Player.HasFinished)
+        {
+            var currentTimer = (int)race.CurrentTimer;
+            if (HUDController.Instance != null)
+            {
+                HUDController.Instance.ShowFinishCounter(currentTimer);
+            }
+        }
+    }
+}",,,A working example of optimized code.
+Refactoring,XS - ECS Racing,"How to refactor this method?
+
+private void OnJoinButtonClicked()
+{
+    if (!ServerConnectionUtils.ValidateIPv4(m_IpField.value))
+    {
+        Popup.Instance.Show(""Error"", ""Please enter a valid IP."", ""Retry"");
+        return;
+    }
+
+    // Assign Player Name
+    PlayerInfoController.Instance.LocalPlayerName = m_NameField.value;
+
+    // Disable Main Menu
+    m_MainMenuPanel.style.display = DisplayStyle.None;
+
+    // Switch camera
+    if (MainMenuCameraSwitcher.Instance != null)
+    {
+        MainMenuCameraSwitcher.Instance.ShowCarSelectionCamera();
+        CarSelectionUI.Instance.ShowCarSelection(true);
+    }
+
+    // Stop checking input in Main Menu
+    StopCoroutine(UpdateInput());
+    m_InMainMenu = false;
+
+    // Set Player Info for Connection
+    PlayerInfoController.Instance.SetConnectionInfo(m_IpField.value, m_PortField.value);
+    PlayerAudioManager.Instance.PlayClick();
+}",,,Provides a refactored code with explanations.
+Bug fixing,XS - ECS Racing,"        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
+        {
+            var id = GetSingleton<NetworkId>();
+            var ecb = new EntityCommandBuffer(Allocator.TempJob);
+            foreach (var player in Query<PlayerAspect>())
+            {
+                if (player.NetworkId == id.Value)
+                {
+                    ecb.AddComponent<LocalUser>(player.Self);
+                }
+            }
+
+            ecb.Playback(state.EntityManager);
+        }
+
+Fix all of the errors in this code:
+- LocalUser component is added multiple times
+- present memory leak",,,Points out at two issues and how to address them.
+Bug fixing,XS - ECS Racing,"Explain this error in details.
+
+error CS0006: Metadata file 'Library/PackageCache/com.unity.ext.nunit@2.0.3/net35/unity-custom/nunit.framework.dll' could not be found
+extmeshpro@3.0.6/Scripts/Runtime/TMP_SpriteAnimator.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SpriteAsset.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SpriteAssetImportFormats.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SpriteCharacter.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SpriteGlyph.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Style.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_StyleSheet.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SubMesh.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SubMeshUI.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Text.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_TextElement.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_TextElement_Legacy.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_TextInfo.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_TextParsingUtilities.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_TextProcessingStack.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_TextUtilities.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_UpdateManager.cs""
+""Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_UpdateRegistery.cs""
+-langversion:9.0
+/deterministic
+/optimize-
+/debug:portable
+/nologo
+/RuntimeMetadataVersion:v4.0.30319
+/nowarn:0169
+/nowarn:0649
+/nowarn:0282
+/nowarn:1701
+/nowarn:1702
+/utf8output
+/preferreduilang:en-US
+-warn:0
+/additionalfile:""Library/Bee/artifacts/200b0aEDbg.dag/Unity.TextMeshPro.UnityAdditionalFile.txt""",,,Provides a reason and potential solution.
+Bug fixing,XS - ECS Racing,"System.IndexOutOfRangeException: Index 1 is out of range of '1' Length.
+This Exception was thrown from a job compiled with Burst, which has limited exception support.
+#3 Unity.Collections.NativeArray1[[Unity.Entities.Racing.Common.SortableProgress, Unity.Entities.Racing.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null.FailOutOfRangeError(Unity.Collections.NativeArray1[[Unity.Entities.Racing.Common.SortableProgress, Unity.Entities.Racing.Common, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null this, System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089 index) -> System.Void, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089_d86ac4950a96921a61637d67a9793aa7 from UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+#4 Unity.Jobs.IJobExtensions.JobStruct`1<Unity.Entities.Racing.Gameplay.SortProgressArrayJob>.Execute(ref Unity.Entities.Racing.Gameplay.SortProgressArrayJob data, System.IntPtr additionalPtr, System.IntPtr bufferRangePatchData, ref Unity.Jobs.LowLevel.Unsafe.JobRanges ranges, int jobIndex) -> void_d86ac4950a96921a61637d67a9793aa7 from UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+#5 34f9f82a5d8aaf7d1ee0c14beebfb2cb
+#6 ExecuteJob(ManagedJobData, void ()(void, void*, void*, void*, int), int, unsigned char*)
+#7 ForwardJobToManaged(ManagedJobData*)
+#8 ujob_execute_job(ujob_control_t*, ujob_lane_t*, ujob_job_t*, ujob_handle_t, unsigned int)
+#9 lane_guts(ujob_control_t*, ujob_lane_t*, int, int)
+#10 worker_thread_routine(void*)
+#11 Thread::RunThreadWrapper(void*)
+#12 _pthread_start
+#13 thread_start",,,The exception and stack trace are explained with the potential cause and a way to resolve it.
+Bug fixing,XS - ECS Racing,"Provide options to fix NullReferenceException issue with the following stacktrace:
+
+NullReferenceException: Object reference not set to an instance of an object
+Unity.Entities.Racing.Gameplay.ServerConnectionUtils.StartClientServer (System.String port) (at Assets/Scripts/Gameplay/Connection/ServerConnectionUtils.cs:32)
+Unity.Entities.Racing.Gameplay.CarSelectionUI.OnStartButtonClicked (UnityEngine.UIElements.ClickEvent evt) (at Assets/Scripts/Gameplay/UI/CarSelection/CarSelectionUI.cs:97)
+UnityEngine.UIElements.EventCallbackFunctor`1[TEventType].Invoke (UnityEngine.UIElements.EventBase evt, UnityEngine.UIElements.PropagationPhase propagationPhase) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/Events/EventCallback.cs:79)
+UnityEngine.UIElements.EventCallbackRegistry.InvokeCallbacks (UnityEngine.UIElements.EventBase evt, UnityEngine.UIElements.PropagationPhase propagationPhase) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/Events/EventCallbackRegistry.cs:353)
+UnityEngine.UIElements.CallbackEventHandler.HandleEvent (UnityEngine.UIElements.EventBase evt) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/Events/EventHandler.cs:263)
+UnityEngine.UIElements.CallbackEventHandler.HandleEventAtCurrentTargetAndPhase (UnityEngine.UIElements.EventBase evt) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/Events/EventHandler.cs:189)
+UnityEngine.UIElements.CallbackEventHandler.UnityEngine.UIElements.IEventHandler.HandleEvent (UnityEngine.UIElements.EventBase evt) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/Events/EventHandler.cs:206)
+UnityEngine.UIElements.EventDispatchUtilities.HandleEventAcrossPropagationPath (UnityEngine.UIElements.EventBase evt) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/Events/IEventDispatchingStrategy.cs:143)
+UnityEngine.UIElements.EventDispatchUtilities.PropagateEvent (UnityEngine.UIElements.EventBase evt) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/Events/IEventDispatchingStrategy.cs:90)
+UnityEngine.UIElements.PointerEventDispatchingStrategy.SendEventToTarget (UnityEngine.UIElements.EventBase evt, UnityEngine.UIElements.IPanel panel) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/Events/PointerEventDispatchingStrategy.cs:21)
+UnityEngine.UIElements.PointerEventDispatchingStrategy.DispatchEvent (UnityEngine.UIElements.EventBase evt, UnityEngine.UIElements.IPanel panel) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/Events/PointerEventDispatchingStrategy.cs:13)
+UnityEngine.UIElements.EventDispatcher.ApplyDispatchingStrategies (UnityEngine.UIElements.EventBase evt, UnityEngine.UIElements.IPanel panel, System.Boolean imguiEventIsInitiallyUsed) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/EventDispatcher.cs:422)
+UnityEngine.UIElements.EventDispatcher.ProcessEvent (UnityEngine.UIElements.EventBase evt, UnityEngine.UIElements.IPanel panel) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/EventDispatcher.cs:363)
+UnityEngine.UIElements.EventDispatcher.ProcessEventQueue () (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/EventDispatcher.cs:321)
+UnityEngine.UIElements.EventDispatcher.OpenGate () (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/EventDispatcher.cs:285)
+UnityEngine.UIElements.EventDispatcherGate.Dispose () (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/EventDispatcher.cs:77)
+UnityEngine.UIElements.EventDispatcher.ProcessEvent (UnityEngine.UIElements.EventBase evt, UnityEngine.UIElements.IPanel panel) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/EventDispatcher.cs:413)
+UnityEngine.UIElements.EventDispatcher.Dispatch (UnityEngine.UIElements.EventBase evt, UnityEngine.UIElements.IPanel panel, UnityEngine.UIElements.DispatchMode dispatchMode) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/EventDispatcher.cs:229)
+UnityEngine.UIElements.BaseVisualElementPanel.SendEvent (UnityEngine.UIElements.EventBase e, UnityEngine.UIElements.DispatchMode dispatchMode) (at /Users/bokken/build/output/unity/unity/ModuleOverrides/com.unity.ui/Core/Panel.cs:520)
+UnityEngine.UIElements.PanelEventHandler.SendEvent (UnityEngine.UIElements.EventBase e, UnityEngine.EventSystems.BaseEventData sourceEventData) (at ./Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/UIElements/PanelEventHandler.cs:265)
+UnityEngine.UIElements.PanelEventHandler.OnPointerUp (UnityEngine.EventSystems.PointerEventData eventData) (at ./Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/UIElements/PanelEventHandler.cs:135)
+UnityEngine.EventSystems.ExecuteEvents.Execute (UnityEngine.EventSystems.IPointerUpHandler handler, UnityEngine.EventSystems.BaseEventData eventData) (at ./Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs:50)
+UnityEngine.EventSystems.ExecuteEvents.Execute[T] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.ExecuteEvents+EventFunction`1[T1] functor) (at ./Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs:272)
+UnityEngine.EventSystems.EventSystem:Update() (at ./Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs:530)",,,Provides correct reason and solution.
+Bug fixing,XS - ECS Racing,"public int Compare(SortableProgress x, SortableProgress y)
+{
+    if(x.Progress.HasArrived && y.Progress.HasArrived)
+        return x.Progress.ArrivalTime.CompareTo(y.Progress.ArrivalTime);
+
+    if (x.Progress.HasArrived || y.Progress.HasArrived)
+        return y.Progress.HasArrived.CompareTo(x.Progress.HasArrived);
+
+    if (x.Progress.CurrentLap != y.Progress.CurrentLap)
+        return y.Progress.CurrentLap.CompareTo(x.Progress.CurrentLap);
+
+    if (x.Progress.CurrentCheckPoint == y.Progress.CurrentCheckPoint)
+    {
+        return x.Distance.CompareTo(y.Distance);
+    }
+
+    return y.Progress.CurrentCheckPoint.CompareTo(x.Progress.CurrentCheckPoint);
+}
+
+Here's description how this functionality of comparing progress of two cards meant to work:
+- it should return -1 if x has higher progress than y
+- it should return 1 if y has higher progress than x
+- if identical it returns 0
+
+Highest progress is when:
+- car has arrived earlier then the other
+- or current lap is higher than the other
+- or current check point is higher than the other
+- or current distance is higher than the other
+
+Is there's any logical issues?",,,Should point to 2 existing issues in the logic.
+Bug fixing,XS - ECS Racing,"Here's unfixed code
+
+    /// <summary>
+    /// Change the state for the race when countdown has finished
+    /// </summary>
+    [UpdateBefore(typeof(RaceIntroSystem))]
+    [UpdateAfter(typeof(UpdateTimerSystem))]
+    [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
+    public partial struct RaceCountdownSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<Race>();
+        }
+
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
+        {
+            var race = GetSingletonRW<Race>().ValueRW;
+
+            if (!race.IsCountDown)
+            {
+                return;
+            }
+
+            if (race.TimerFinished)
+            {
+                race.SetRaceState(RaceState.InProgress);
+                race.InitialTime = UnityEngine.Time.realtimeSinceStartup;
+
+                // Change all the players state
+                var changePlayerStateJob = new ChangePlayerStateJob
+                {
+                    CurrentState = PlayerState.Countdown,
+                    TargetState = PlayerState.Race
+                };
+                state.Dependency = changePlayerStateJob.ScheduleParallel(state.Dependency);
+            }
+
+            SetSingleton(race);
+        }
+    }
+
+and here's fixed one
+
+    /// <summary>
+    /// Change the state for the race when countdown has finished
+    /// </summary>
+    [UpdateBefore(typeof(RaceIntroSystem))]
+    [UpdateAfter(typeof(UpdateTimerSystem))]
+    [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
+    public partial struct RaceCountdownSystem : ISystem
+    {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<Race>();
+        }
+
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
+        {
+            var race = GetSingletonRW<Race>().ValueRW;
+
+            if (!race.IsCountDown)
+            {
+                return;
+            }
+
+            if (race.TimerFinished)
+            {
+                race.SetRaceState(RaceState.InProgress);
+                race.InitialTime = state.WorldUnmanaged.Time.ElapsedTime;
+
+                // Change all the players state
+                var changePlayerStateJob = new ChangePlayerStateJob
+                {
+                    CurrentState = PlayerState.Countdown,
+                    TargetState = PlayerState.Race
+                };
+                state.Dependency = changePlayerStateJob.ScheduleParallel(state.Dependency);
+            }
+
+            SetSingleton(race);
+        }
+    }
+
+Explain the fix.",,,Explained the fix logically and refers to existing rules for ECS.
+Navigation,S - Fighting game,"What is the overall project structure in Unity? Are there specific folders for scripts, assets, and scenes that I should be aware of?",,,
+Navigation,S - Fighting game,How is the rollback netcode integrated with the Unity engine? Are there any specific components or scripts I should focus on when working with networking features?,,,
+Navigation,S - Fighting game,What should I know about the lobby system for online matchmaking? How is player data managed during matchmaking?,,,
+Navigation,S - Fighting game,How should I handle game state transitions within the state machine architecture? Are there predefined states I need to follow?,,,
+Navigation,S - Fighting game,How is the replay system implemented? What should I know about recording and replaying matches?,,,
+Navigation,S - Fighting game,How is AI behavior defined for the opponent characters? Are there specific scripts or tools used to manage AI logic?,,,"Answer is based on BrainController and CpuController classes. If not, the rest is irrelevant.
+There should be a clear explanation of how the AI makes decisions, including how it handles movement, attacks, and special actions based on conditions like player proximity and random factors.
+The response should address how the AI logic is deterministic, ensuring consistent behavior across different game instances, which is crucial for networked play.
+The explanation should be clear, concise, and technical, suitable for someone familiar with Unity and game development concepts."
+Navigation,S - Fighting game,"How are character inputs managed, especially in the context of rollback netcode, to ensure they are accurately captured and replayed?",,,
+Navigation,S - Fighting game,"How are game events such as combos, special moves, and finishers handled within the state machine architecture?",,,
+Navigation,S - Fighting game,"How are collisions detected and managed in the game, especially in networked environments?",,,
+Navigation,S - Fighting game,"How is the save and load functionality implemented, particularly concerning player progress and settings?",,,"Answer is based on DemonicsSaver and/or PlayerPreferences classes. If not, the rest is irrelevant.
+A high-level description of what DemonicsSaver and/or PlayerPreferences class does.
+A real example of how these classes are used in the project for storing progress and settings. No assumptions."
+Navigation,S - Fighting game,Where is main menu located in this project?,,,
+Navigation,S - Fighting game,"How are audio assets, such as sound effects and music, integrated and synchronized with gameplay events?",,,
+Navigation,S - Fighting game,Can you explain the process of creating and testing new levels or stages within the game?,,,
+Navigation,S - Fighting game,How is the dialogue system managed within the game? Is there a particular approach to adding or modifying dialogues?,,,
+Navigation,S - Fighting game,What is the process for implementing new characters or abilities? Are there modular systems in place to facilitate this?,,,"Answer is based on PlayerStatsSO and State classes. If not, the rest is irrelevant.
+Explanation of how characters are represented (e.g., PlayerStatsSO ScriptableObject).
+Steps to create and configure a new character.
+Description of how abilities and moves are defined and linked to characters.
+Mention of how the state machine integrates with these abilities."
+Navigation,S - Fighting game,"How are animations handled within the project? Are they deterministic, and how are they synced across the network?",,,
+Navigation,S - Fighting game,How is arena (stage) background animated? What tools are used and how to change the animation?,,,
+Navigation,S - Fighting game,"I see this complex and poorly documented PlayerLogic method from GameSimulation, explain how it works?",,,"Answer is based on GameSimulation struct. If not, the rest is irrelevant.
+Exactly PlayerLogic method is described. If not, the rest is irrelevant.
+A high-level description of what the PlayerLogic method is intended to achieve within the context of GameSimulation struct.
+A breakdown of the main components or sections of the method, explaining how each part contributes to the overall logic.
+A mentioning of key aspects the method covers: inputs, states, physics, effects, animations."
+Navigation,S - Fighting game,"I see this complex and poorly documented Movement method from CpuController, explain how it works?",,,"Answer is based on CpuController class. If not, the rest is irrelevant.
+Exactly Movement method is described. If not, the rest is irrelevant.
+A high-level description of what the Movement method is intended to achieve within the context of CpuController class.
+A breakdown of the main components or sections of the method, explaining how each part contributes to the overall logic.
+A mentioning of key aspect the method covers: randomness to enasure unpredictable experience for the human player."
+Navigation,S - Fighting game,"I see this complex and poorly documented UpdateGameView method from GameSimulationView, explain how it works?",,,
+Navigation,S - Fighting game,"I see this complex and poorly documented ResetPlayer method from Player, explain how it works?",,,
+Navigation,S - Fighting game,"I see this complex and poorly documented IncreaseCombo method from PlayerUI, explain how it works?",,,
+Navigation,S - Fighting game,"I see this complex and poorly documented InitializePlayers method from GameplayManager, explain how it works?",,,
+Navigation,S - Fighting game,"I see this complex and poorly documented ZoomCoroutine method from CameraShake, explain how it works?",,,
+Navigation,S - Fighting game,"I see this complex and poorly documented UpdateDisplay method from InputHistory, explain how it works?",,,
+Navigation,S - Fighting game,"I see this complex and poorly documented InRecovery method from PlayerAnimator, explain how it works?",,,
+Navigation,S - Fighting game,"I see this complex and poorly documented CreateLobby method from NetworkManagerLobby, explain how it works?",,,
+Navigation,S - Fighting game,"I have to add a new dialogue interaction between characters during a match, how should it be handled in this project?",,,
+Navigation,S - Fighting game,"I have to implement a new combat mechanic, such as a parry or counter system, how should it be handled in this project?",,,
+Navigation,S - Fighting game,I want to extend the AI opponent's behavior. Where/how is it implemented here?,,,
+Navigation,S - Fighting game,I want to enhance the replay system to include slow-motion playback. Where/how is it implemented here?,,,
+Navigation,S - Fighting game,How do I create new character entity according to the architecture approach in this game?,,,
+Navigation,S - Fighting game,How do I create new AI behavior according to the architecture approach in this game?,,,
+Navigation,S - Fighting game,How to connect PlayerPreferences with CpuController to get configuration data and use it for AI behavior?,,,"Answer is based on PlayerPreferences and CpuController classes. If not, the rest is irrelevant.
+Only PlayerPreferences and CpuController classes are used, no new scripts should be introduced.
+Explanation of how PlayerPreferences will store AI configuration data.
+Description of the data flow from PlayerPreferences to CpuController.
+Steps to connect PlayerPreferences with CpuController, including where and how to access the configuration data.
+Code snippets showing the integration process."
+Navigation,S - Fighting game,How to connect ReplayManager with PlayerDialogue to implement dialog replaying in addition to the fight?,,,
+Navigation,S - Fighting game,How can I get access to GameplayManager from ReplayManager?,,,
+Navigation,S - Fighting game,How can I get access to NetworkManagerLobby from GameplayManager?,,,
+Navigation,S - Fighting game,"I have two entities GGPORunner and SimulationManager that need to be moved into different assemblies, how could I keep their connection without cross-reference conflicts and affecting other entities?",,,
+Refactoring,S - Fighting game,How can we modularize game systems? Write a step by step refactoring plan.,,,
+Refactoring,S - Fighting game,How can we improve state machine architecture to simplify and enhance the state machine logic used for game states and combat mechanics? Write a step by step refactoring plan.,,,
+Refactoring,S - Fighting game,How can we improve AI performance and make the AI system more maintainable? Write a step by step refactoring plan.,,,
+Refactoring,S - Fighting game,How can we improve the replay system to streamline data capture and playback? Write a step by step refactoring plan.,,,
+Refactoring,S - Fighting game,How can we improve the lobby code to better handle larger numbers of players and complex matchmaking rules? Write a step by step refactoring plan.,,,
+Refactoring,S - Fighting game,I need to refactor Update method in ReplayManager class. How can I do it in the right way?,,,
+Refactoring,S - Fighting game,I need to refactor CpuController class. How can I do it in the right way?,,,
+Refactoring,S - Fighting game,"When profiling game we encountered on a high GC.Alloc issue that is located at this method. How can we resolve it?
+
+public void UpdateDisplay(InputList inputList, InputBufferNetwork inputBuffer)
+{
+Inputs = new List<InputItemNetwork>();
+Inputs.AddRange(inputBuffer.triggers);
+Inputs.AddRange(inputBuffer.sequences);
+List<int> triggers = new();
+for (int i = 0; i < inputList.inputTriggers.Length; i++)
+if (inputList.inputTriggers[i].held && !inputList.inputTriggers[i].sequence)
+if (!triggers.Contains(i))
+triggers.Add(i);
+
+int sequence = 0;
+for (int i = 0; i < inputList.inputTriggers.Length; i++)
+if (inputList.inputTriggers[i].held && inputList.inputTriggers[i].sequence)
+sequence = (int)inputList.inputTriggers[i].inputEnum;
+
+if (triggers.Count != previousTriggers.Count || sequence != previousSequence)
+{
+_inputHistoryContainer.GetChild(_inputHistoryContainer.childCount - 1).transform.SetAsFirstSibling();
+_inputHistoryImage = _inputHistoryContainer.GetChild(0).GetComponent<InputHistoryImage>();
+_inputHistoryImage.UpdateDisplay(sequence, triggers.ToArray());
+}
+if (_inputHistoryImage != null)
+_inputHistoryImage.UpdateFramesDisplay();
+previousSequence = sequence;
+previousTriggers = triggers;
+}",,,
+Refactoring,S - Fighting game,When profiling game we encountered on a high GC.Alloc issue and execution time in SetCorrectPromptSprite method from PromptsImageChanger class. How can we resolve it?,,,
+Navigation,S - Fighting game,I have Replays.asset I need to add dialogs data. How can I do it?,,,
+Navigation,S - Fighting game,I have Fighter1.asset I need to add more paramters to this configuration. How can I do it?,,,
+Navigation,S - Fighting game,"How are game events such as combos, special moves, and finishers handled within the state machine architecture?","How are game events such as combos, special moves, and finishers handled within the state machine architecture?
+Are there special calculations or conditions for combos?
+Is there a base class for all states? If so, what does it do?
+Could you explain how combo functionality is implemented in more details including the parts that are shared in state class?
+Looking through code I see PlayerComboSystem class that you did not mention before. What's the exact purpose of it?
+Where is this class used specifically?
+After investigating codebase I see that it is actually used in State class. Could you provide more details of usages?
+Could you list all types of special moves and finisher within the state machine architecture?
+Could you please summarize all above and give a full answer to the initial question? Write initial question then the answer to it.
+Could you please summarize all above and give a full answer to the initial question? Write initial question then the answer to it.",,
+Coding,M - nftnftwars-client,I wanna add new GameObject serialize field for VFX prefab in my script HeroVisualConfigSo. What do I need to do?,,,
+Coding,M -  nftwars-NexusWarlords-Client,"Для реализации логики прогрессии команд надо добавить уровень команды в скрипт TeamData, а также при создании битвы валидировать, что TeamData level поле на старте будет всегда иметь значение 1.",,,
+Coding,S - Fighting game,When selecting character I need to be able to go back from selecting color to selecting assist so I could select assist once again. How do I do it?,,,
+Coding,S - Fighting game,When selecting character I need to be able to go back from selecting assist to selecting character so I could select another character. How do I do it?,,,
+Coding,S - Fighting game,What do I need to do to add Backspace button controls to current input system? So I could use it in main menu screens to perform custom actions.,,,
+Coding,S - Fighting game,I want to add stage selection UI as in change stage menu to pause menu. How do I do it?,,,
+Coding,S - Fighting game,I need to add a new stage with animations. How do I do it?,,,
+Navigation,S - Fighting game,Explain the architecture design in this project. Which software design patterns are implemented explicitly and wich are implicit?,,,
+Refactoring,S - Fighting game,I see this project implements the MVP pattern for the user interface. Explain the user interface structure - main prefabs and related presenters logic.,,,Copilot gave a better answer.
+Refactoring,S - Fighting game,"What are the critical components of the rollback system in this project, and how do they interact with the game’s core systems like input handling, physics, and state synchronization?",,,
+Refactoring,S - Fighting game,"The application framework is the part of the project wich controls the main application flow - initialization, updates, scene changes, and quitting the app. Explain the application framework in this project.",,,
+Navigation,S - Fighting game,Are there any signs of Photon integration in this project?,,,
+Navigation,M3 - MatchThreeGame,Explain the matching algorithm in this game and how it relates to pre-matching,,,
+Refactoring,M3 - MatchThreeGame,I see the figures in the matches and potential matches searching code are hardcoded. Propose minimal code refactoring to allow me to define figures as arrays of relative positions.,,,
+Refactoring,M3 - MatchThreeGame,Explain the matching algorithm used here.,,,
+Project architecture understanding,S - Fighting game,I want to integrate a Tutorial in this game. Analyze the gameplay and player loop and provide me with a comprehensive list of thing player would like to learn to play the game and win.,,,
+Project architecture understanding,S - Fighting game,"# Description:
+
+I have to implement the Feature in this game.
+
+## Interactive Gothic Storybook Tutorial
+
+The tutorial MUST be seamlessly integrated into gameplay using **subtle visual cues and cryptic ambient storytelling**. Players **learn by doing**, guided by **non-intrusive prompts** such as glowing glyphs, faint whispers, and ghostly afterimages. These elements MUST NOT disrupt gameplay flow. Mechanics should be **discovered organically**, allowing both newcomers and experienced players to engage at their own pace.
+
+**Narrative-Driven Lessons**: Fundamental tutorials should be delivered through an **ominous, animated storybook**, blending lore with essential game mechanics. Each snippet SHOULD reveal both a lesson and a piece of the game's narrative.
+
+**Variable Outcomes**: The tutorial MUST NOT follow a fixed path or scenario. First-time players MUST feel a sense of **agency**, discovering mechanics in a personal, emergent way.
+
+## Requirements
+
+- **Integration**: The tutorial system implementation **MUST** be fully separated from the existing dialogue system as well as from any other game systems to facilitate seamless integration and removal.
+- **Scalability for Updates**: Utilize Unity's `ScriptableObjects` to store tutorial clue data, enabling rapid additions or modifications without modifying core logic.
+- **Non-Intrusive Visual Cues**: Implement subtle visual indicators (e.g., glowing glyphs, ghostly afterimages) using Unity’s URP shaders and particle systems to ensure a non-intrusive tutorial experience.
+- **Dynamic Tutorial Paths**: Tutorial cues **MUST** be triggered dynamically based on player actions, proximity to interactive elements, or element appearance. This ensures that players discover mechanics organically without a predefined sequence, preserving gameplay fluidity.
+- **Narrative Integration**: Implement a `StorybookManager` class to manage narrative-driven tutorial lessons. The storybook, containing all tutorial clues (one per page), **MUST** be accessible via the menu. Pages **MUST** be ordered according to the sequence in which the player encountered the clues during gameplay.
+- **Integration with Existing Systems**: The tutorial system **MUST NOT** interrupt gameplay under any circumstances. Tutorial clues **MUST** only be displayed to the player who triggered them.
+- **Accessibility**: Each tutorial clue **MUST** be displayed once and then made permanently accessible in the storybook.
+- **Localization**: The tutorial is available **ONLY** in English.
+- **AI Opponent Integration**: The tutorial is designed **EXCLUSIVELY** for teaching human players. Tutorial events **MUST NOT** be triggered for AI opponents unless the player must learn about AI-specific behaviors or interactions.
+- **Hitstop**: Tutorial events **MUST NOT** trigger hitstop to prevent interference with other players' gameplay. However, tutorials **MAY** be triggered during hitstop for improved readability.
+- **Rollback Netcode Compatibility**: The tutorial system is **EXCLUDED** from networking and **WILL NEVER** be subject to rollback netcode. It **MUST** be triggered **ONLY** for the local player and **MUST NOT** interfere in any way with remote players.
+- **Replay System Integration**: Tutorial events **MUST NOT** be recorded or included in replays under any circumstances.
+- **Save/Load System**: The order the clue was displayed to the player **MUST** be saved and loaded from the Unity PlayerPrefs.
+
+# Action
+
+Analyze the repository and propose an architecture design for the Interactive Gothic Storybook Tutorial feature based on the provided requirements. Double-check the proposal to ensure it implements all requirements without relying on the game code.
+
+# Output Formatting
+
+<Brief description of idea behind the proposal>
+
+- <Class #1 Name> : [Base Class] - <Responsibility>
+   - <Member #1 Name> : Type - <Responsibility>
+   - <Member #2 Name> : Type - <Responsibility>
+   - ...
+   - <Member #N Name> : Type - <Responsibility>
+
+- <Class #2 Name> : [Base Class] - <Responsibility>
+   - <Member #1 Name> : Type - <Responsibility>
+   - <Member #2 Name> : Type - <Responsibility>
+   - ...
+   - <Member #N Name> : Type - <Responsibility>
+
+- ...
+
+- <Class #N Name> : [Base Class] - <Responsibility>
+   - <Member #1 Name> : Type - <Responsibility>
+   - <Member #2 Name> : Type - <Responsibility>
+   - ...
+   - <Member #N Name> : Type - <Responsibility>
+",,,
+Project architecture understanding,S - Fighting game,"I have the architectural design proposal for the feature in this game.
+You will review and modify the proposal to meet new requirements:
+- Modify the TutorialTriggerSystem to be easily extensible, allowing for the addition and removal of different trigger conditions.
+- Ensure trigger conditions can be applied to any object or prefab in the game.
+- Allow in-place configuration without requiring additional objects.
+
+# Interactive Gothic Storybook Tutorial
+
+The tutorial MUST be seamlessly integrated into gameplay using **subtle visual cues and cryptic ambient storytelling**. Players **learn by doing**, guided by **non-intrusive prompts** such as glowing glyphs, faint whispers, and ghostly afterimages. These elements MUST NOT disrupt gameplay flow. Mechanics should be **discovered organically**, allowing both newcomers and experienced players to engage at their own pace.
+
+**Narrative-Driven Lessons**: Fundamental tutorials should be delivered through an **ominous, animated storybook**, blending lore with essential game mechanics. Each snippet SHOULD reveal both a lesson and a piece of the game's narrative.
+
+**Variable Outcomes**: The tutorial MUST NOT follow a fixed path or scenario. First-time players MUST feel a sense of **agency**, discovering mechanics in a personal, emergent way.
+
+# Requirements
+
+- **Integration**: The tutorial system implementation **MUST** be fully separated from the existing dialogue system as well as from any other game systems to facilitate seamless integration and removal.
+- **Scalability for Updates**: Utilize Unity's `ScriptableObjects` to store tutorial clue data, enabling rapid additions or modifications without modifying core logic.
+- **Non-Intrusive Visual Cues**: Implement subtle visual indicators (e.g., glowing glyphs, ghostly afterimages) using Unity’s URP shaders and particle systems to ensure a non-intrusive tutorial experience.
+- **Dynamic Tutorial Paths**: Tutorial cues **MUST** be triggered dynamically based on player actions, proximity to interactive elements, or element appearance. This ensures that players discover mechanics organically without a predefined sequence, preserving gameplay fluidity.
+- **Narrative Integration**: Implement a `StorybookManager` class to manage narrative-driven tutorial lessons. The storybook, containing all tutorial clues (one per page), **MUST** be accessible via the menu. Pages **MUST** be ordered according to the sequence in which the player encountered the clues during gameplay.
+- **Integration with Existing Systems**: The tutorial system **MUST NOT** interrupt gameplay under any circumstances. Tutorial clues **MUST** only be displayed to the player who triggered them.
+- **Accessibility**: Each tutorial clue **MUST** be displayed once and then made permanently accessible in the storybook.
+- **Localization**: The tutorial is available **ONLY** in English.
+- **AI Opponent Integration**: The tutorial is designed **EXCLUSIVELY** for teaching human players. Tutorial events **MUST NOT** be triggered for AI opponents unless the player must learn about AI-specific behaviors or interactions.
+- **Hitstop**: Tutorial events **MUST NOT** trigger hitstop to prevent interference with other players' gameplay. However, tutorials **MAY** be triggered during hitstop for improved readability.
+- **Rollback Netcode Compatibility**: The tutorial system is **EXCLUDED** from networking and **WILL NEVER** be subject to rollback netcode. It **MUST** be triggered **ONLY** for the local player and **MUST NOT** interfere in any way with remote players.
+- **Replay System Integration**: Tutorial events **MUST NOT** be recorded or included in replays under any circumstances.
+- **Save/Load System**: The state of clues (i.e. was the clue ever displayed) **MUST** be saved and loaded from the Unity PlayerPrefs.
+
+# Proposed Architecture
+
+1. **TutorialClueSO** : [ScriptableObject] - Stores tutorial clue data. The name of the object serves as the clue unique ID.
+   - **clueText**: `string` - The narrative or instructional text for the clue.
+   - **visualCuePrefab**: `GameObject` - Prefab for the visual cue (e.g., glowing glyphs, ghostly afterimages).
+   - **triggerCondition**: `enum` - Condition for triggering the clue (e.g., player action, proximity, element appearance).
+   - **audioCue**: `AudioClip` - Optional audio cue (e.g., faint whispers) to accompany the visual cue.
+   - **storybookPage**: `Sprite` - The corresponding page in the storybook for this clue.
+
+2. **StorybookManager** : [MonoBehaviour] - Manages narrative-driven tutorial lessons
+   - **cluesDiscovered**: `List<TutorialClueSO>` - Ordered list of clues discovered by the player.
+   - **storybookUI**: `GameObject` - Reference to the storybook UI in the menu.
+   - **currentPageIndex**: `int` - Tracks the currently displayed page in the storybook.
+   - **LoadStorybook()**: `void` - Loads the storybook UI and displays the discovered clues in order.
+   - **AddClue(TutorialClueSO clue)**: `void` - Adds a new clue to the list and updates the storybook.
+   - **SaveCluesToPlayerPrefs()**: `void` - Saves the order of discovered clues to Unity's `PlayerPrefs`.
+   - **LoadCluesFromPlayerPrefs()**: `void` - Loads the order of discovered clues from `PlayerPrefs`.
+
+3. **TutorialTriggerSystem** : [MonoBehaviour] - Dynamically triggers tutorial cues**
+   - **activeClues**: `List<TutorialClueSO>` - List of clues that can be triggered based on conditions.
+   - **playerProximityRadius**: `float` - Radius for proximity-based triggers.
+   - **CheckTriggers()**: `void` - Checks for trigger conditions (e.g., player actions, proximity) and activates the appropriate clue.
+   - **ActivateClue(TutorialClueSO clue)**: `void` - Displays the visual and audio cues for the clue and adds it to the `StorybookManager`.
+
+4. **VisualCueManager** : [MonoBehaviour] - Manages non-intrusive visual cues**
+   - **urpShader**: `Shader` - URP shader for rendering visual cues (e.g., glowing glyphs).
+   - **particleSystem**: `ParticleSystem` - Particle system for ghostly afterimages.
+   - **DisplayVisualCue(TutorialClueSO clue)**: `void` - Instantiates and displays the visual cue prefab.
+   - **HideVisualCue()**: `void` - Hides the visual cue after a set duration.
+
+5. **AudioCueManager** : [MonoBehaviour] - Manages audio cues**
+   - **audioSource**: `AudioSource` - Audio source for playing tutorial-related sounds.
+   - **PlayAudioCue(TutorialClueSO clue)**: `void` - Plays the audio cue associated with the clue.
+   - **StopAudioCue()**: `void` - Stops the audio cue after a set duration.
+
+6. **TutorialSaveSystem** : [MonoBehaviour] - Handles saving and loading tutorial progress**
+   - **SaveTutorialProgress()**: `void` - Saves the order of discovered clues and other tutorial progress to `PlayerPrefs`.
+   - **LoadTutorialProgress()**: `void` - Loads the order of discovered clues and other tutorial progress from `PlayerPrefs`.
+
+# Output Formatting
+
+<Brief description of idea behind the proposal>
+
+- <Class #1 Name> : [Base Class] - <Responsibility>
+   - <Member #1 Name> : Type - <Responsibility>
+   - <Member #2 Name> : Type - <Responsibility>
+   - ...
+   - <Member #N Name> : Type - <Responsibility>
+
+- <Class #2 Name> : [Base Class] - <Responsibility>
+   - <Member #1 Name> : Type - <Responsibility>
+   - <Member #2 Name> : Type - <Responsibility>
+   - ...
+   - <Member #N Name> : Type - <Responsibility>
+
+- ...
+
+- <Class #N Name> : [Base Class] - <Responsibility>
+   - <Member #1 Name> : Type - <Responsibility>
+   - <Member #2 Name> : Type - <Responsibility>
+   - ...
+   - <Member #N Name> : Type - <Responsibility>
+",,,
+Project architecture understanding,S - Fighting game,"I need to implement a new feature in this game. Here’s the description:
+
+-   Twitch stream viewers should be able to send in-game messages. These messages will appear above either the player’s or the opponent’s (AI or another player) head during the game, as if they were speaking.
+
+Please analyze the repository and player loops, and provide a minimal list of critical concerns from both a game design and a programming perspective I MUST address before implementing this feature.
+
+The format for the answer MUST be:
+
+- **<Concern #1 name>**: < example resolution for concern #1>
+- **<Concern #2 name>**: < example resolution for concern #2>
+...
+- **<Concern #N name>**: < example resolution for concern #N>
+
+Be clear and laconic.","Very good, but give more laconic examples please",,
+Project architecture understanding,S - Fighting game,"I have a feature to implement in this game:
+
+**Twitch chat integration**: I want viewers to be able to send in-game messages, which will appear above the player’s or the AI opponent’s head during the game as if they were saying them.
+
+**Full list of requirements:**
+
+1. **Message Format**: Messages will appear as text bubbles above the character. The message length will be limited to 128 characters (this must be configurable).
+2. **Message Triggers**: Messages from the chat containing the AI's or player's character name will be collected into corresponding lists and triggered when the opponent character is downed or loses the match. After a message is triggered, the list for that character will be cleared.
+3. **Message Duration**: Messages will stay visible for 3 seconds (this must be configurable).
+4. **Character Targeting**: To target a character, a message must start with the character’s name followed by a colon (e.g., ""Player1: Nice shot!"").
+5. **Twitch Authentication**: The game will authenticate with Twitch using the player’s OAuth tokens. Messages will be selected from the authenticated player’s active stream, if available.
+6. **Replay**: Selected and displayed messages will be saved and visible during the match replay.
+7. **Network Synchronization**: The message lists are NOT subject to network synchronization. If both players are authenticated and streaming two different streams, messages will be selected from both chats on both clients. If only one player is authenticated, then the messages will appear only for this player and be saved only for their replay. If one player bans another from their chat, then messages will be selected from one chat only.
+
+Complete the following subtask for this feature:
+
+### Subtask 1: Twitch Authentication Setup
+Create a system that authenticates the game with Twitch using the player’s OAuth tokens. The system should connect to the Twitch API and ensure it can access the authenticated player’s chat messages.
+",,,
