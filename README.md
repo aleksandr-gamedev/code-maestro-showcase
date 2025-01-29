@@ -18,8 +18,8 @@ Starting from the next release, we will regularly run these tests and publish th
 
 The current set of projects includes:
 
-- **Darklings Fighting Game** – AI assistant analysis for game development
-- **ECS Racing Sample** – AI assistant responses for Unity-based projects
+- **Darklings Fighting Game** – Crossplatform 2D fighting game with networking
+- **ECS Racing Sample** – Online racing game
 - More projects coming soon!
 
 ## How to Add a Project
